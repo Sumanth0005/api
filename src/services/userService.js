@@ -12,3 +12,11 @@ exports.login = async ({ email, password }) => {
   }
   return user.generateAuthToken();
 };
+
+exports.update = async (userData, userId) => {
+  return await User.findByIdAndUpdate(
+    userId,
+    { $set: userData }, // Update only fields provided in the request body
+    { new: true, runValidators: true } // Return the updated user and run validation
+  );
+}

@@ -17,3 +17,22 @@ exports.loginUser = async (req, res) => {
     res.status(401).json({ success: false, message: error.message });
   }
 };
+
+exports.updateUser = async (req, res) => {
+  try{
+    const id = req.params.id;
+
+    // if(req.user.id !== id) {
+    //   return res.status(403).json({message: "User is not authenticated"});
+    // }
+
+    const udpateUserRecord = await userService.update(req.body, id);
+    if (!udpateUserRecord) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+    res.status(200).json({ message: 'User updated successfully.', data: udpateUserRecord });
+
+  } catch(e){
+    res.status(401).json({success: false, message: e.message});
+  }
+};
