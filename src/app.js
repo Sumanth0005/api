@@ -4,6 +4,6 @@ const userRoutes = require('./routes/userRoutes');
 const app = express();
 
 app.use(express.json());
-app.use('/api/users', userRoutes);
+app.use('/v1/users', userRoutes);
 
 module.exports = app;
