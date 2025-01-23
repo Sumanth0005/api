@@ -20,3 +20,7 @@ exports.get = async (id) => {
 exports.delete = async (id) => {
   return await badge.findByIdAndDelete(id);
 };
+
+exports.getAll = async () => {
+  return await badge.find();
+};

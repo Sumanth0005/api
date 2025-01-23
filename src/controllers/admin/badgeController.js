@@ -54,4 +54,14 @@ exports.deleteBadge = async (req, res) => {
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
+}
+
+exports.readAllBadges = async (req, res) => {
+  console.log('Received request to /get')
+  try {
+    const allBadge = await badgeService.getAll();
+    res.status(200).json({ message: 'All badges retrieved successfully.', data: allBadge });
+  } catch (e) {
+    res.status(500).json({ success: false, message: e.message });
+  }
 };
