@@ -10,7 +10,7 @@ exports.login = async ({ email, password }) => {
   if (!user || !(await user.comparePassword(password))) {
     throw new Error('Invalid credentials');
   }
-  return user.generateAuthToken();
+  return user.generateAuthToken(user);
 };
 
 exports.update = async (userData, userId) => {

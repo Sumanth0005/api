@@ -19,8 +19,8 @@ userSchema.methods.comparePassword = function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-userSchema.methods.generateAuthToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+userSchema.methods.generateAuthToken = function (user) {
+  return jwt.sign({ id: this._id, userInfo: user }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION });
 };
 
 module.exports = mongoose.model('User', userSchema);
