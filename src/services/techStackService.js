@@ -25,3 +25,5 @@ exports.get = async (id) => {
 exports.getAll = async () => {
   return await Techstack.find();
 };
+
+
