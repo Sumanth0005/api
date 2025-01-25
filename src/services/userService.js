@@ -20,3 +20,6 @@ exports.update = async (userData, userId) => {
     { new: true, runValidators: true } // Return the updated user and run validation
   );
 }
+exports.get = async (userId) => {
+  return await User.findById(userId); 
+};

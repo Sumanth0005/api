@@ -36,3 +36,15 @@ exports.updateUser = async (req, res) => {
     res.status(401).json({success: false, message: e.message});
   }
 };
+//read
+exports.readUser = async (req, res) => {
+  try {
+    const user = await userService.get(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+    res.status(200).json({ message: 'User retrieved successfully.', data: user });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
